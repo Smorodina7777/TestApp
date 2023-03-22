@@ -1,16 +1,10 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: D-tora
-  Date: 22.03.2023
-  Time: 14:10
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import = " java.util.* " %>
 <html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-  $END$
-  </body>
+<body>
+<%
+  String username=request.getParameter("uname");
+  String password=request.getParameter("pass");
+  out.println("Name: "+username+" Password: "+password);
+%>
+</body>
 </html>

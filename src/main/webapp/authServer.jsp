@@ -1,16 +1,17 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: D-tora
-  Date: 22.03.2023
-  Time: 14:30
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-  $END$
-  </body>
+<head>
+    <title>Check Credentials</title>
+</head>
+<body>
+<%
+  String uid=request.getParameter("id");
+  String password=request.getParameter("pass");
+  session.setAttribute("session-uid", uid);
+  if (uid.equals("Maxim") && password.equals("1234")){
+    response.sendRedirect("success.jsp");
+  }else {
+    response.sendRedirect("failed.jsp");
+  }
+%>
+</body>
 </html>
