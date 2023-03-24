@@ -7,28 +7,19 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet("/session")
+@WebServlet("/club")
 public class SessionServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-        Integer visitCounter = (Integer) session.getAttribute("visitCounter");
-        if (visitCounter == null) {
-            visitCounter = 1;
-        } else {
-            visitCounter++;
-        }
-        session.setAttribute("visitCounter", visitCounter);
-        String username = req.getParameter("username");
+        HttpSession session = req.getSession(true);
+
+        String uid = (String) session.getAttribute("uid");
         resp.setContentType("text/html");
-        PrintWriter printWriter = resp.getWriter();
-        if (username == null) {
-            printWriter.write("Hello, Anonymous" + "<br>");
+        if (uid == null) {
+            resp.sendRedirect("signUp.jsp");
         } else {
-            printWriter.write("Hello, " + username + "<br>");
+            resp.sendRedirect("success.jsp");
         }
-        printWriter.write("Page was visited " + visitCounter + " times.");
-        printWriter.close();
     }
 }
